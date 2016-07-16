@@ -9,13 +9,15 @@ public abstract class GUIPage<P extends JavaPlugin> {
     protected final P plugin;
     protected final GUIPlayer player;
     protected final String title;
+    protected final Object[] params;
 
     private GUIInventory inventory;
 
-    public GUIPage(P plugin, GUIPlayer player, String title) {
+    public GUIPage(P plugin, GUIPlayer player, String title, Object... params) {
         this.plugin = plugin;
         this.player = player;
         this.title = title;
+        this.params = params;
         this.inventory = loadInventory();
     }
 
