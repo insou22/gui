@@ -55,7 +55,7 @@ public class GUIPlayer {
 
     public void onClose() {
         if (inGUI()) {
-            ignores.remove(currentIndex());
+            crumb.remove(currentIndex());
         }
     }
 
