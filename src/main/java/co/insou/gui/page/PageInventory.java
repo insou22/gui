@@ -160,7 +160,7 @@ public class PageInventory implements GUIInventory {
     {
         if (totalPages > 1)
         {
-            return slot == 45 || slot == 53;
+            return (slot == 45 && totalPages > page) || (slot == 53 && page < totalPages);
         }
         return false;
     }
@@ -168,10 +168,10 @@ public class PageInventory implements GUIInventory {
     @Override
     public void executeAction(int slot, InventoryClickEvent event)
     {
-        if (slot == 45) {
+        if (slot == 45 && totalPages > page) {
             backPage();
         }
-        if (slot == 53) {
+        if (slot == 53 && page < totalPages) {
             forwardPage();
         }
     }
