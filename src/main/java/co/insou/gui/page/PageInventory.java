@@ -168,7 +168,7 @@ public class PageInventory implements GUIInventory {
     @Override
     public void executeAction(int slot, InventoryClickEvent event)
     {
-        if (slot == 45 && totalPages > page) {
+        if (slot == 45 && page > 1) {
             backPage();
         }
         if (slot == 53 && page < totalPages) {
