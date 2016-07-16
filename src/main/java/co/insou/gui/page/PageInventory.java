@@ -160,7 +160,7 @@ public class PageInventory implements GUIInventory {
     {
         if (totalPages > 1)
         {
-            return (slot == 45 && totalPages > page) || (slot == 53 && page < totalPages);
+            return (slot == 45) || (slot == 53);
         }
         return false;
     }
