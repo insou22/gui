@@ -48,7 +48,9 @@ public abstract class GUIPage<P extends JavaPlugin> {
         if (inventory.hasAction(event.getSlot())) {
             inventory.executeAction(event.getSlot(), event);
         } else {
-            onInventoryClick(event);
+            if (event.getInventory().getItem(event.getSlot()) != null) {
+                onInventoryClick(event);
+            }
         }
     }
 

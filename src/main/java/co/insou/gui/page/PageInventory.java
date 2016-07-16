@@ -19,8 +19,7 @@ public class PageInventory implements GUIInventory {
     private static final ItemStack BACK_BUTTON;
     private static final ItemStack FORWARD_BUTTON;
 
-    static
-    {
+    static {
         BACK_BUTTON = new ItemStack(Material.ARROW);
         FORWARD_BUTTON = new ItemStack(Material.ARROW);
 
@@ -41,38 +40,32 @@ public class PageInventory implements GUIInventory {
     private int page = 1;
     private int totalPages = 1;
 
-    public PageInventory(GUIPlayer player, String title)
-    {
+    public PageInventory(GUIPlayer player, String title) {
         this.player = player;
         this.title = title;
     }
 
-    public PageInventory addItem(ItemStack item)
-    {
+    public PageInventory addItem(ItemStack item) {
         this.contents.add(item);
         this.recalculate();
         return this;
     }
 
-    public PageInventory withItems(Collection<ItemStack> items)
-    {
+    public PageInventory withItems(Collection<ItemStack> items) {
         this.contents.addAll(items);
         this.recalculate();
         return this;
     }
 
-    public PageInventory withItems(ItemStack... items)
-    {
+    public PageInventory withItems(ItemStack... items) {
         this.contents.addAll(Arrays.asList(items));
         this.recalculate();
         return this;
     }
 
     @Override
-    public void open()
-    {
-        if (totalPages == 1)
-        {
+    public void open() {
+        if (totalPages == 1) {
             Inventory inventory = Bukkit.createInventory(null, calcSize(contents.size()), title);
             int slot = 0;
             for (ItemStack item : contents)
@@ -89,32 +82,25 @@ public class PageInventory implements GUIInventory {
         List<ItemStack> invContents = Lists.newArrayList();
 
         ItemStack item;
-        try
-        {
-            while ((item = this.contents.get(startPoint++)) != null)
-            {
+        try {
+            while ((item = this.contents.get(startPoint++)) != null) {
                 invContents.add(item);
                 if (startPoint - ((this.page - 1) * 45) == 45) break;
             }
         }
-        catch (IndexOutOfBoundsException ignored)
-        {
-        }
+        catch (IndexOutOfBoundsException ignored) {}
 
         Inventory inventory = Bukkit.createInventory(null, 54, this.title);
 
         int slot = 0;
-        for (ItemStack invItem : invContents)
-        {
+        for (ItemStack invItem : invContents) {
             inventory.setItem(slot++, invItem);
         }
 
-        if (this.page > 1)
-        {
+        if (this.page > 1) {
             inventory.setItem(45, PageInventory.BACK_BUTTON);
         }
-        if (this.page < this.getPages(this.contents.size()))
-        {
+        if (this.page < this.getPages(this.contents.size())) {
             inventory.setItem(53, PageInventory.FORWARD_BUTTON);
         }
 
@@ -135,20 +121,16 @@ public class PageInventory implements GUIInventory {
         open();
     }
 
-    private void recalculate()
-    {
+    private void recalculate() {
         this.totalPages = this.contents.size() > 54 ? this.contents.size() / 45 : 1;
     }
 
-    private int calcSize(int size)
-    {
+    private int calcSize(int size) {
         return (((size - 1) / 9) + 1) * 9;
     }
 
-    private int getPages(int size)
-    {
-        if (size % 45 == 0)
-        {
+    private int getPages(int size) {
+        if (size % 45 == 0) {
             return size / 45;
         }
         Double d = ((double) size + 1) / 45;
@@ -156,35 +138,30 @@ public class PageInventory implements GUIInventory {
     }
 
     @Override
-    public boolean hasAction(int slot)
-    {
-        if (totalPages > 1)
-        {
+    public boolean hasAction(int slot) {
+        if (totalPages > 1) {
             return (slot == 45) || (slot == 53);
         }
         return false;
     }
 
     @Override
-    public void executeAction(int slot, InventoryClickEvent event)
-    {
+    public void executeAction(int slot, InventoryClickEvent event) {
         if (slot == 45 && page > 1) {
             backPage();
         }
-        if (slot == 53 && page < totalPages) {
+        if (slot == 53 && this.page < this.getPages(this.contents.size())) {
             forwardPage();
         }
     }
 
     @Override
-    public void setItem(int slot, ItemStack item)
-    {
+    public void setItem(int slot, ItemStack item) {
         throw new RuntimeException("Setting items not supported in PageInventory");
     }
 
     @Override
-    public void setItem(int slot, ItemStack item, InventoryAction action)
-    {
+    public void setItem(int slot, ItemStack item, InventoryAction action) {
         throw new RuntimeException("Setting items not supported in PageInventory");
     }
 

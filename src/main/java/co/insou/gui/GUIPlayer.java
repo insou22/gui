@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -80,7 +81,12 @@ public class GUIPlayer {
             openPage(currentPage(), false);
         }
         if (inGUI()) {
-            currentPage().onClose();
+            plugin.getServer().getScheduler().runTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    currentPage().onClose();
+                }
+            });
         }
     }
 
