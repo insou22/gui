@@ -13,7 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  * </p>
  * <pre>
  * for example:
- * {@code class FooPage extends GUIPage<MainPlugin> {}
+ * {@code
+ * class FooPage extends GUIPage<MainPlugin> {
+ * }
  * </pre>
  *
  * @param <P>   Your Main (Java)Plugin class
