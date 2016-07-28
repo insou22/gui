@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * <pre>
  * <code>
- * class FooPage extends GUIPage<MainPlugin> {
+ * class FooPage extends {@code GUIPage<MainPlugin>} {
  * </code>
  * </pre>
  *
