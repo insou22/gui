@@ -9,9 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * include in your plugin.
  *
  * <p>
- * To allow direct automatic access to your Main class instance, include the Main class name in your GUIPage definition,
- * for example: class FooPage extends GUIPage<MainPlugin> {
+ * To allow direct automatic access to your Main class instance, include the Main class name in your GUIPage definition
  * </p>
+ * <pre>
+ * for example:
+ * {@code class FooPage extends GUIPage<MainPlugin> {}
+ * </pre>
  *
  * @param <P>   Your Main (Java)Plugin class
  */

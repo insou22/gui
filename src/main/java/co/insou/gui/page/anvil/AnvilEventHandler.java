@@ -2,7 +2,7 @@ package co.insou.gui.page.anvil;
 
 /**
  * An AnvilEventHandler is an overloadable interface used to listen for a type of AnvilEvent
- * @param <T>
+ * @param <T>   The type of AnvilEvent to accept
  */
 public interface AnvilEventHandler<T extends AnvilEvent> {
 
