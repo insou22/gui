@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The PageInventory class represents an inventory of dynamic size, automatically expanding to fit more items
+ */
 public class PageInventory implements GUIInventory {
 
     private static final ItemStack BACK_BUTTON;
@@ -40,29 +43,56 @@ public class PageInventory implements GUIInventory {
     private int page = 1;
     private int totalPages = 1;
 
+    /**
+     * PageInventory constructor
+     *
+     * @param player    The player to open the inventory to
+     * @param title     The title of the inventory
+     */
     public PageInventory(GUIPlayer player, String title) {
         this.player = player;
         this.title = title;
     }
 
+    /**
+     * Add an item to the inventory
+     *
+     * @param item  The item to add
+     * @return      The current PageInventory instance
+     */
     public PageInventory addItem(ItemStack item) {
         this.contents.add(item);
         this.recalculate();
         return this;
     }
 
+    /**
+     * Adds items to the inventory
+     *
+     * @param items  The items to add
+     * @return The current PageInventory instance
+     */
     public PageInventory withItems(Collection<ItemStack> items) {
         this.contents.addAll(items);
         this.recalculate();
         return this;
     }
 
+    /**
+     * Adds items to the inventory
+     *
+     * @param items  The items to add
+     * @return      The current PageInventory instance
+     */
     public PageInventory withItems(ItemStack... items) {
         this.contents.addAll(Arrays.asList(items));
         this.recalculate();
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void open() {
         if (totalPages == 1) {
@@ -137,6 +167,9 @@ public class PageInventory implements GUIInventory {
         return (int) Math.ceil(d);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasAction(int slot) {
         if (totalPages > 1) {
@@ -145,6 +178,9 @@ public class PageInventory implements GUIInventory {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void executeAction(int slot, InventoryClickEvent event) {
         if (slot == 45 && page > 1) {
@@ -155,11 +191,17 @@ public class PageInventory implements GUIInventory {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setItem(int slot, ItemStack item) {
         throw new RuntimeException("Setting items not supported in PageInventory");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setItem(int slot, ItemStack item, InventoryAction action) {
         throw new RuntimeException("Setting items not supported in PageInventory");

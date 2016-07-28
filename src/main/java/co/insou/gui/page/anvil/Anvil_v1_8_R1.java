@@ -26,6 +26,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
 
+/**
+ * The AnvilInventory implementation for 1.8 rev 1
+ */
 class Anvil_v1_8_R1 extends AnvilInventory {
 
     private class Container extends ContainerAnvil {
@@ -56,7 +59,7 @@ class Anvil_v1_8_R1 extends AnvilInventory {
     private Listener listener;
     private boolean closing = false;
 
-    public Anvil_v1_8_R1(final JavaPlugin plugin, final GUIPlayer player)
+    Anvil_v1_8_R1(final JavaPlugin plugin, final GUIPlayer player)
     {
         this.plugin = plugin;
         this.player = player;
@@ -141,6 +144,9 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         HandlerList.unregisterAll(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AnvilInventory setItem(AnvilSlot slot, ItemStack item)
     {
@@ -148,6 +154,9 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AnvilInventory setItem(AnvilSlot slot, ItemStack item, InventoryAction action)
     {
@@ -155,6 +164,9 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AnvilInventory withClickConsumer(AnvilEventHandler<AnvilClickEvent> consumer)
     {
@@ -162,6 +174,9 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AnvilInventory withCloseConsumer(AnvilEventHandler<AnvilCloseEvent> consumer)
     {
@@ -169,6 +184,9 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void open()
     {
@@ -199,12 +217,18 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         p.activeContainer.addSlotListener(p);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasAction(int slot)
     {
         return actions.containsKey(slot);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void executeAction(int slot, InventoryClickEvent event)
     {
@@ -214,12 +238,18 @@ class Anvil_v1_8_R1 extends AnvilInventory {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setItem(int slot, ItemStack item)
     {
         items.put(AnvilSlot.bySlot(slot), item);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setItem(int slot, ItemStack item, InventoryAction action)
     {

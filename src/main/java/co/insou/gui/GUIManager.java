@@ -13,11 +13,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * A manager for the gui framework
+ *
+ * <p>
+ * A new GUIManager must be invoked for each plugin using this framework
+ * </p>
+ */
 public class GUIManager {
 
     private final JavaPlugin plugin;
     private final Map<UUID, GUIPlayer> players = new HashMap<>();
 
+    /**
+     * Register a new GUIManager for your plugin
+     *
+     * <p>
+     * A new GUIManager must be invoked for each plugin using this framework
+     * </p>
+     *
+     * @param plugin    Your plugin's main class to register to
+     */
     public GUIManager(JavaPlugin plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(new GUIListener(), plugin);

@@ -12,10 +12,21 @@ public enum AnvilSlot {
         this.slot = slot;
     }
 
+    /**
+     * Returns the int value of the AnvilSlot
+     *
+     * @return the int value of the slot
+     */
     public int getSlot() {
         return slot;
     }
 
+    /**
+     * Get the associated AnvilSlot from int slot
+     *
+     * @param slot  The int value of the AnvilSlot
+     * @return The associated AnvilSlot
+     */
     public static AnvilSlot bySlot(int slot) {
         for (AnvilSlot anvilSlot : values()) {
             if (anvilSlot.getSlot() == slot) {
